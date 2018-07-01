@@ -5,4 +5,4 @@ How to run......
    
       ----Install Electron https://electronjs.org/
    
-      ----Execute on terminal --- electron container.js
+      ----Execute in terminal >>> electron container.js

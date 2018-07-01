@@ -3,6 +3,6 @@ A materialistic calculator in JS
 
 How to run......
    
-      ----Install Electron https://electronjs.org/
+      ----Install electron-js
    
       ----Execute in terminal >>> electron container.js

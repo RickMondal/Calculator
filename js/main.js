@@ -1,27 +1,29 @@
+$('#screen').value = '\n';
+
 var root = $('#root').textContent;
 var division = $('#division').textContent;
 
 $('button').on('click', function() {
-  if ($('#screen').innerHTML.indexOf('=') != -1) {
-    $('#screen').innerHTML = $('#screen').innerHTML.replace($('#screen').innerHTML.substring(0, $('#screen').innerHTML.indexOf('=') + 1), '<br>')
+  if ($('#screen').value.indexOf('=') != -1) {
+    $('#screen').value = $('#screen').value.replace($('#screen').value.substring(0, $('#screen').value.indexOf('=') + 1), '\n')
   }
-  $('#screen').innerHTML = '<br>' + $('#screen').innerHTML.replace("<br>", "") + this.value;
+  $('#screen').value = '\n' + $('#screen').value.replace("\n", "") + this.value;
   $('#delete').innerHTML = "&#8592";
   ripple(this);
 })
 
 $('#delete').on('click', function() {
   if (this.innerHTML.indexOf("C") !== -1) {
-    $('#screen').innerHTML = "<br>";
+    $('#screen').value = "\n";
     this.innerHTML = "&#8592";
     ripple(this);
   } else {
-    if ($('#screen').innerHTML.length > 4) {
-      $('#screen').innerHTML = $('#screen').innerHTML.substring(0, $('#screen').innerHTML.length - 1);
-      if ($('#screen').innerHTML.charAt($('#screen').innerHTML.length - 1) == ("n" || "s" || "g")) {
-        $('#screen').innerHTML = $('#screen').innerHTML.substring(0, $('#screen').innerHTML.length - 3);
-      } else if ($('#screen').innerHTML.charAt($('#screen').innerHTML.length - 1) == (">")) {
-        $('#screen').innerHTML = $('#screen').innerHTML.substring(0, $('#screen').innerHTML.length - 16);
+    if ($('#screen').value.length > 1) {
+      $('#screen').value = $('#screen').value.substring(0, $('#screen').value.length - 1);
+      if ($('#screen').value.charAt($('#screen').value.length - 1) == ("n" || "s" || "g")) {
+        $('#screen').value = $('#screen').value.substring(0, $('#screen').value.length - 3);
+      } else if ($('#screen').value.charAt($('#screen').value.length - 1) == (">")) {
+        $('#screen').value = $('#screen').value.substring(0, $('#screen').value.length - 16);
       }
       ripple(this);
     }
@@ -67,7 +69,12 @@ $('#angle').on('click', function() {
 })
 
 $('#eval').on('click', function() {
-  $('#screen').innerHTML = $('#screen').innerHTML.replace('<br>', '');
+  $('#screen').value = $('#screen').value.replace('\n', '');
   ripple(this);
-  evaluate($('#screen').innerHTML.replace('<br>' && "=", ''));
+  evaluate($('#screen').value.replace('\n' && "=", ''));
+})
+$('#screen').on('keydown', function(event) {
+  if (event.keyCode == 13) {
+    evaluate($('#screen').value.replace('\n' && "=", ''));
+  }
 })

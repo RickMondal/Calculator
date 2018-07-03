@@ -32,6 +32,7 @@ body {
   text-align: center;
   position: relative;
   overflow-x: auto;
+  resize: none;
   background-color: white;
 }
 
@@ -59,7 +60,7 @@ button {
 .eval {
   width: 12vh;
   height: 12vh;
-  margin-left: 2.4vw;
+  margin-left: 3vw;
   background-color: orange;
   border-radius: 100%;
 }

@@ -48,19 +48,19 @@ function evaluate(expression) {
       }
     }
     answer = answer.join('');
-    $('#screen').innerHTML = eval(answer);
-    if ($('#screen').innerHTML.indexOf("999999") !== -1) {
-      $('#screen').innerHTML = Math.ceil(parseFloat($('#screen').innerHTML) * 10000000000000) / 10000000000000;
+    $('#screen').value = eval(answer);
+    if ($('#screen').value.indexOf("999999") !== -1) {
+      $('#screen').value = Math.ceil(parseFloat($('#screen').value) * 10000000000000) / 10000000000000;
     }
-    if ($('#screen').innerHTML.indexOf("000000") !== -1) {
-      $('#screen').innerHTML = Math.floor(parseFloat($('#screen').innerHTML) * 10000000000000) / 10000000000000;
-      console.log(Math.floor(parseFloat($('#screen').innerHTML) * 10000000000000) / 10000000000000);
+    if ($('#screen').value.indexOf("000000") !== -1) {
+      $('#screen').value = Math.floor(parseFloat($('#screen').value) * 10000000000000) / 10000000000000;
+      console.log(Math.floor(parseFloat($('#screen').value) * 10000000000000) / 10000000000000);
     }
-    if (eval($('#screen').innerHTML) == undefined) {
-      $('#screen').innerHTML = "<br>";
+    if (eval($('#screen').value) == undefined) {
+      $('#screen').value = "\n";
     }
-    if (eval($('#screen').innerHTML) == $('#screen').innerHTML) {
-      $('#screen').innerHTML = "<br>= " + $('#screen').innerHTML;
+    if (eval($('#screen').value) == $('#screen').value) {
+      $('#screen').value = "\n= " + $('#screen').value;
     }
   }
   $('#delete').innerHTML = "C";

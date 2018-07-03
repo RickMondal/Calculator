@@ -17,9 +17,9 @@ body {
 
 #screen {
   width: 100vw;
-  height: 25vh;
-  padding-top: 3vh;
+  height: 28vh;
   font-size: 6vw;
+  line-height: 25vh;
   text-align: center;
   position: relative;
   resize: none;
@@ -69,7 +69,7 @@ button {
     height: 0%;
     top: 50%;
     left: 50%;
-    opacity: 1;
+    opacity: 0.8;
   }
   to {
     width: 100%;

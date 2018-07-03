@@ -22,7 +22,11 @@ function evaluate(expression) {
     for (var i = 0; i < numbers.length; i++) {
       signs = numbers[i].match(/[!PC\^\u221A]/);
       if (signs == null) {
-        numbers[i] = eval(numbers[i]);
+        try {
+          numbers[i] = eval(numbers[i]);
+        } catch (e) {
+          alert("Please enter proper expression")
+        }
       } else {
         if (signs[0] == "!") {
           numbers[i] = fact(numbers[i].replace("!", ""))
@@ -48,19 +52,19 @@ function evaluate(expression) {
       }
     }
     answer = answer.join('');
-    $('#screen').value = eval(answer);
-    if ($('#screen').value.indexOf("999999") !== -1) {
-      $('#screen').value = Math.ceil(parseFloat($('#screen').value) * 10000000000000) / 10000000000000;
+    try {
+      $('#screen').value = eval(answer);
+    } catch (e) {
+      $('#screen').value = "";
     }
-    if ($('#screen').value.indexOf("000000") !== -1) {
-      $('#screen').value = Math.floor(parseFloat($('#screen').value) * 10000000000000) / 10000000000000;
-      console.log(Math.floor(parseFloat($('#screen').value) * 10000000000000) / 10000000000000);
+    if ($('#screen').value.indexOf("999999") != -1 || $('#screen').value.indexOf("000000") != -1) {
+      $('#screen').value = Math.round($('#screen').value.replace("=", '') * 10000) / 10000;
     }
     if (eval($('#screen').value) == undefined) {
-      $('#screen').value = "\n";
+      $('#screen').value = "";
     }
     if (eval($('#screen').value) == $('#screen').value) {
-      $('#screen').value = "\n= " + $('#screen').value;
+      $('#screen').value = "= " + $('#screen').value;
     }
   }
   $('#delete').innerHTML = "C";

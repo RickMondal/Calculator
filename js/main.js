@@ -1,35 +1,25 @@
-$('#screen').value = '\n';
-
 var root = $('#root').textContent;
 var division = $('#division').textContent;
 
 $('button').on('click', function() {
-  if ($('#screen').value.indexOf('=') != -1) {
-    $('#screen').value = $('#screen').value.replace($('#screen').value.substring(0, $('#screen').value.indexOf('=') + 1), '\n')
-  }
-  $('#screen').value = '\n' + $('#screen').value.replace("\n", "") + this.value;
+  $('#screen').value = $('#screen').value + this.value;
   $('#delete').innerHTML = "&#8592";
   ripple(this);
-  if ($('#screen').scrollWidth > $('#screen').innerWidth()) {
-    $('#screen').style.fontSize = ($('#screen').style.fontSize.replace('vw', '') * 6 / 7) + 'vw';
-  }
 })
 
 $('#delete').on('click', function() {
   if (this.innerHTML.indexOf("C") !== -1) {
-    $('#screen').value = "\n";
+    $('#screen').value = "";
     this.innerHTML = "&#8592";
     ripple(this);
   } else {
-    if ($('#screen').value.length > 1) {
-      $('#screen').value = $('#screen').value.substring(0, $('#screen').value.length - 1);
-      if ($('#screen').value.charAt($('#screen').value.length - 1) == ("n" || "s" || "g")) {
-        $('#screen').value = $('#screen').value.substring(0, $('#screen').value.length - 3);
-      } else if ($('#screen').value.charAt($('#screen').value.length - 1) == (">")) {
-        $('#screen').value = $('#screen').value.substring(0, $('#screen').value.length - 16);
-      }
-      ripple(this);
+    $('#screen').value = $('#screen').value.substring(0, $('#screen').value.length - 1);
+    if ($('#screen').value.charAt($('#screen').value.length - 1) == ("n" || "s" || "g")) {
+      $('#screen').value = $('#screen').value.substring(0, $('#screen').value.length - 3);
+    } else if ($('#screen').value.charAt($('#screen').value.length - 1) == (">")) {
+      $('#screen').value = $('#screen').value.substring(0, $('#screen').value.length - 16);
     }
+    ripple(this);
   }
 })
 
@@ -72,14 +62,14 @@ $('#angle').on('click', function() {
 })
 
 $('#eval').on('click', function() {
-  $('#screen').value = $('#screen').value.replace('\n', '');
   ripple(this);
-  evaluate($('#screen').value.replace('\n' && "=", ''));
+  evaluate($('#screen').value.replace("=", ''));
 })
+
 $('#screen').on('keydown', function(event) {
   if (event.keyCode == 13) {
     event.preventDefault();
-    evaluate($('#screen').value.replace('\n' && "=", ''));
+    evaluate($('#screen').value.replace("=", ''));
     $('#screen').value = $('#screen').value;
   }
 })

@@ -10,6 +10,9 @@ $('button').on('click', function() {
   $('#screen').value = '\n' + $('#screen').value.replace("\n", "") + this.value;
   $('#delete').innerHTML = "&#8592";
   ripple(this);
+  if ($('#screen').scrollWidth > $('#screen').innerWidth()) {
+    $('#screen').style.fontSize = ($('#screen').style.fontSize.replace('vw', '') * 6 / 7) + 'vw';
+  }
 })
 
 $('#delete').on('click', function() {
@@ -75,6 +78,8 @@ $('#eval').on('click', function() {
 })
 $('#screen').on('keydown', function(event) {
   if (event.keyCode == 13) {
+    event.preventDefault();
     evaluate($('#screen').value.replace('\n' && "=", ''));
+    $('#screen').value = $('#screen').value;
   }
 })

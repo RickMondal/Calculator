@@ -6,7 +6,7 @@ function evaluate(expression) {
     expression = expression.replace(division, '/');
     expression = expression.replace('%', '/100');
     expression = expression.replace('&#960', Math.PI);
-    expression = expression.replace('<sup>-1</sup>', 'in');
+    expression = expression.replace((String.fromCharCode(8315) + String.fromCharCode(185)), 'in');
     brackets_start = (expression.match(/[(]/g) || []);
     brackets_end = (expression.match(/[)]/g) || []);
     if (brackets_start.length !== brackets_end.length) {
@@ -26,6 +26,7 @@ function evaluate(expression) {
           numbers[i] = eval(numbers[i]);
         } catch (e) {
           alert("Please enter proper expression")
+          $('#screen').value = "";
         }
       } else {
         if (signs[0] == "!") {
@@ -52,11 +53,7 @@ function evaluate(expression) {
       }
     }
     answer = answer.join('');
-    try {
-      $('#screen').value = eval(answer);
-    } catch (e) {
-      $('#screen').value = "";
-    }
+    $('#screen').value = eval(answer);
     if ($('#screen').value.indexOf("999999") != -1 || $('#screen').value.indexOf("000000") != -1) {
       $('#screen').value = Math.round($('#screen').value.replace("=", '') * 10000) / 10000;
     }
@@ -123,11 +120,16 @@ function tanin(num) {
 }
 
 function fact(num) {
-  constant = num;
+  num = parseInt(num);
+  constant = parseInt(num);
   for (var i = 1; i < constant; i++) {
     num *= i;
   }
-  return num;
+  if (num < 1) {
+    return 1;
+  } else {
+    return num;
+  }
 }
 
 function ripple(parent) {

@@ -30,11 +30,11 @@ $('#shift').on('click', function() {
     $('.functions')[5].value = "P";
     $('.functions')[6].innerHTML = "C";
     $('.functions')[6].value = "C";
-    $('.functions')[7].innerHTML = "sin" + "<sup>-1</sup>";
+    $('.functions')[7].innerHTML = "sin&#8315&#185";
     $('.functions')[7].value = $('.functions')[7].innerHTML + "(";
-    $('.functions')[8].innerHTML = "cos" + "<sup>-1</sup>";
+    $('.functions')[8].innerHTML = "cos&#8315&#185";
     $('.functions')[8].value = $('.functions')[8].innerHTML + "(";
-    $('.functions')[9].innerHTML = "tan" + "<sup>-1</sup>";
+    $('.functions')[9].innerHTML = "tan&#8315&#185";
     $('.functions')[9].value = $('.functions')[9].innerHTML + "(";
     $('#shift').setAttribute("num", "1")
   } else {
@@ -64,8 +64,8 @@ $('#angle').on('click', function() {
 $('#eval').on('click', function() {
   ripple(this);
   evaluate($('#screen').value.replace("=", ''));
+  $('#screen').value = $('#screen').value;
 })
-
 $('#screen').on('keydown', function(event) {
   if (event.keyCode == 13) {
     event.preventDefault();

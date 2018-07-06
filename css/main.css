@@ -63,6 +63,11 @@ button {
   animation: ripple 0.5s linear;
 }
 
+button:hover {
+  cursor: pointer;
+  text-shadow: 1px 0px 10px gray;
+}
+
 @keyframes ripple {
   from {
     width: 0%;
@@ -78,8 +83,4 @@ button {
     left: 0%;
     opacity: 0;
   }
-}
-
-button:hover {
-  cursor: pointer;
 }
